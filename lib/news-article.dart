@@ -2,6 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+class ArticleContent extends StatelessWidget {
+  final List content;
+
+  ArticleContent(this.content);
+
+  //Hier JSON zerlegen
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(this
+        .content
+        .toString()); //hier soll später eine Liste mit Content (Überschrift, Headerbild und Paragraphs/Bilder übergeben werden)
+  }
+}
+
 class Article extends StatelessWidget {
   final String cpArticleID;
   final String headline;
@@ -34,7 +49,8 @@ class Article extends StatelessWidget {
                 if (snapshot.hasError)
                   return Text('Error: ${snapshot.error}');
                 else
-                  return Text('Result: ${snapshot.data}');
+                  return ArticleContent(snapshot
+                      .data); //(Überschrift, Headerbild und Paragraphs/Bilder übergeben werden)
             }
           },
         ),
