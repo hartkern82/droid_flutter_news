@@ -53,7 +53,10 @@ class NewsList extends StatelessWidget {
                               Navigator.push(context,
                                   MaterialPageRoute(builder: (context) {
                                 return Article(
-                                    _articleID(snapshot.data[index]));
+                                  _articleID(snapshot.data[index]),
+                                  _heading(snapshot.data[index]),
+                                  _date(snapshot.data[index]),
+                                );
                               }));
                             },
                           ),

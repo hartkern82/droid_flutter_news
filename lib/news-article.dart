@@ -4,8 +4,10 @@ import 'dart:convert';
 
 class Article extends StatelessWidget {
   final String cpArticleID;
+  final String headline;
+  final String datum;
 
-  Article(this.cpArticleID);
+  Article(this.cpArticleID, this.headline, this.datum);
 
   Future<List<dynamic>> fetchArticle() async {
     var result = await http.get(
@@ -15,15 +17,11 @@ class Article extends StatelessWidget {
     return json.decode(result.body)['entries'];
   }
 
-  String _date(article) {
-    return article['datum'];
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Artikel' + this.cpArticleID),
+        title: Text(this.datum + ' ' + this.headline),
       ),
       body: Container(
         child: FutureBuilder<List<dynamic>>(
