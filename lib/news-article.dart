@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:news/widgets/headerImage.dart';
 
 //wir brauchen noch 2 Klasen
 //Content Image
@@ -8,7 +9,7 @@ import 'dart:convert';
 
 class ArticleContent extends StatelessWidget {
   final List content;
-  final String baseUrl = 'https://praktikum.droidhosting.de/cockpit/';
+  final String baseUrl = 'https://praktikum.droidhosting.de';
 
   ArticleContent(this.content);
 
@@ -16,12 +17,12 @@ class ArticleContent extends StatelessWidget {
 
   headLine() {
     List a = this.content;
-    print(a[0]['headline']);
     return a[0]['headline'];
   }
 
   headImage() {
     List a = this.content;
+    print('Header Image Pfad ' + a[0]['headerImage']['path']);
     return (this.baseUrl + a[0]['headerImage']['path']);
   }
 
@@ -44,7 +45,7 @@ class ArticleContent extends StatelessWidget {
       Text(
         headLine(),
       ),
-      Text(
+      HeaderImage(
         headImage(),
       ),
       Text(
