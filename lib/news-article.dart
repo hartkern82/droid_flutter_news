@@ -2,18 +2,61 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+//wir brauchen noch 2 Klasen
+//Content Image
+//Content Text
+
 class ArticleContent extends StatelessWidget {
   final List content;
+  final String baseUrl = 'https://praktikum.droidhosting.de/cockpit/';
 
   ArticleContent(this.content);
 
   //Hier JSON zerlegen
 
+  headLine() {
+    List a = this.content;
+    print(a[0]['headline']);
+    return a[0]['headline'];
+  }
+
+  headImage() {
+    List a = this.content;
+    return (this.baseUrl + a[0]['headerImage']['path']);
+  }
+
+  contentText(iter) {
+    List a = this.content;
+    return a[0]['content'][iter]['value']['paragraph'];
+  }
+
+  contentImgage(iter) {
+    List a = this.content;
+    return (this.baseUrl + a[0]['content'][iter]['value']['image']['path']);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Text(this
-        .content
-        .toString()); //hier soll später eine Liste mit Content (Überschrift, Headerbild und Paragraphs/Bilder übergeben werden)
+    // return Text(this
+    //     .content
+    //     .toString()); //hier soll später eine Liste mit Content (Überschrift, Headerbild und Paragraphs/Bilder übergeben werden)
+    return Column(children: [
+      Text(
+        headLine(),
+      ),
+      Text(
+        headImage(),
+      ),
+      Text(
+        contentText(0),
+      ),
+      Text(
+        contentImgage(1),
+      ),
+      Text(
+        contentText(2),
+      ),
+    ]);
   }
 }
 
