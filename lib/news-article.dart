@@ -35,12 +35,8 @@ class ArticleContent extends StatelessWidget {
     return (this.baseUrl + a[0]['content'][iter]['value']['image']['path']);
   }
 
-  @override
-  Widget build(BuildContext context) {
-    // return Text(this
-    //     .content
-    //     .toString()); //hier soll später eine Liste mit Content (Überschrift, Headerbild und Paragraphs/Bilder übergeben werden)
-    return SingleChildScrollView(
+  contentList() {
+    var list = SingleChildScrollView(
       child: Column(children: [
         HeaderHeadline(
           headLine(),
@@ -59,6 +55,20 @@ class ArticleContent extends StatelessWidget {
         ),
       ]),
     );
+
+    var dynamicContentList = Column(children: []);
+    dynamicContentList.children
+        .add(HeaderHeadline(headLine())); // Artikelüberschrift
+    dynamicContentList.children.add(HeaderImage(headImage())); // Artikelbild
+
+    //hier kommt die Schleife für den eigentlichen dynamischen Content
+
+    return SingleChildScrollView(child: dynamicContentList);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return contentList(); //hier soll später eine Liste mit Content (Überschrift, Headerbild und Paragraphs/Bilder übergeben werden)
   }
 }
 
