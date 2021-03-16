@@ -9,7 +9,7 @@ class ContentText extends StatelessWidget {
   content() {
     String paragraph = this.text;
     paragraph = paragraph.replaceAll('<p>', '');
-    paragraph = paragraph.replaceAll('</p>', '');
+    paragraph = paragraph.replaceAll('</p>', ''); //geht bestimmt schöner!
     return paragraph;
   }
 
