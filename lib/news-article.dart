@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:news/widgets/headerImage.dart';
-
-//wir brauchen noch 2 Klasen
-//Content Image
-//Content Text
+import 'package:news/widgets/headerHeadline.dart'; //Article Headline
+import 'package:news/widgets/headerImage.dart'; //Article Heading Bild
+import 'package:news/widgets/contentText.dart'; //Article Content Text
+import 'package:news/widgets/contentImage.dart'; //Article Content Image
 
 class ArticleContent extends StatelessWidget {
   final List content;
@@ -31,7 +30,7 @@ class ArticleContent extends StatelessWidget {
     return a[0]['content'][iter]['value']['paragraph'];
   }
 
-  contentImgage(iter) {
+  contentImage(iter) {
     List a = this.content;
     return (this.baseUrl + a[0]['content'][iter]['value']['image']['path']);
   }
@@ -41,23 +40,25 @@ class ArticleContent extends StatelessWidget {
     // return Text(this
     //     .content
     //     .toString()); //hier soll später eine Liste mit Content (Überschrift, Headerbild und Paragraphs/Bilder übergeben werden)
-    return Column(children: [
-      Text(
-        headLine(),
-      ),
-      HeaderImage(
-        headImage(),
-      ),
-      Text(
-        contentText(0),
-      ),
-      Text(
-        contentImgage(1),
-      ),
-      Text(
-        contentText(2),
-      ),
-    ]);
+    return SingleChildScrollView(
+      child: Column(children: [
+        HeaderHeadline(
+          headLine(),
+        ),
+        HeaderImage(
+          headImage(),
+        ),
+        ContentText(
+          contentText(0),
+        ),
+        ContentImage(
+          contentImage(1),
+        ),
+        ContentText(
+          contentText(2),
+        ),
+      ]),
+    );
   }
 }
 

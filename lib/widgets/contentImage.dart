@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class HeaderImage extends StatelessWidget {
+class ContentImage extends StatelessWidget {
   final String path;
 
-  HeaderImage(this.path);
+  ContentImage(this.path);
 
   // pfad() {
   //   String pfad = this.path.toString();
@@ -13,6 +13,6 @@ class HeaderImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return (Image.network(this.path.toString()));
+    return (Image.network(this.path.toString(), width: 200));
   }
 }
