@@ -21,7 +21,6 @@ class ArticleContent extends StatelessWidget {
 
   headImage() {
     List a = this.content;
-    print('Header Image Pfad ' + a[0]['headerImage']['path']);
     return (this.baseUrl + a[0]['headerImage']['path']);
   }
 
@@ -36,33 +35,26 @@ class ArticleContent extends StatelessWidget {
   }
 
   contentList() {
-    var list = SingleChildScrollView(
-      child: Column(children: [
-        HeaderHeadline(
-          headLine(),
-        ),
-        HeaderImage(
-          headImage(),
-        ),
-        ContentText(
-          contentText(0),
-        ),
-        ContentImage(
-          contentImage(1),
-        ),
-        ContentText(
-          contentText(2),
-        ),
-      ]),
-    );
-
+    List a = this.content;
     var dynamicContentList = Column(children: []);
+
+    //add Überschrift und Main Bild
     dynamicContentList.children
         .add(HeaderHeadline(headLine())); // Artikelüberschrift
     dynamicContentList.children.add(HeaderImage(headImage())); // Artikelbild
 
     //hier kommt die Schleife für den eigentlichen dynamischen Content
 
+    for (var counter = 0; counter < a[0]['content'].length; counter++) {
+      if (a[0]['content'][counter]['field']['name'] == 'paragraph') {
+        print('para');
+        dynamicContentList.children
+            .add(ContentText(contentText(counter))); //Paragraph
+      } else {
+        print('img');
+        dynamicContentList.children.add(ContentImage(contentImage(counter)));
+      }
+    }
     return SingleChildScrollView(child: dynamicContentList);
   }
 

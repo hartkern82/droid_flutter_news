@@ -7,12 +7,6 @@ class HeaderHeadline extends StatelessWidget {
 
   HeaderHeadline(this.text);
 
-  // content() {
-  //   String headline = this.text;
-  //   print(headline);
-  //   return headline;
-  // }
-
   @override
   Widget build(BuildContext context) {
     return (Container(

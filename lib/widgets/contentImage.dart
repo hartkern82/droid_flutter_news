@@ -5,14 +5,12 @@ class ContentImage extends StatelessWidget {
 
   ContentImage(this.path);
 
-  // pfad() {
-  //   String pfad = this.path.toString();
-  //   print(pfad);
-  //   return pfad;
-  // }
-
   @override
   Widget build(BuildContext context) {
-    return (Image.network(this.path.toString(), width: 200));
+    return (Container(
+      alignment: Alignment.center,
+      padding: EdgeInsets.fromLTRB(15.0, 25.0, 15.0, 25.0),
+      child: Image.network(this.path.toString(), width: 200),
+    ));
   }
 }

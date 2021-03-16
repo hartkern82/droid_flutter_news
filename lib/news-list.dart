@@ -35,7 +35,6 @@ class NewsList extends StatelessWidget {
           future: fetchNews(),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             if (snapshot.hasData) {
-              // print(_date(snapshot.data[0]));
               return ListView.builder(
                   padding: EdgeInsets.all(8),
                   itemCount: snapshot.data.length,
@@ -47,8 +46,8 @@ class NewsList extends StatelessWidget {
                             leading: Icon(Icons.article_rounded),
                             title: Text(_heading(snapshot.data[index])),
                             subtitle: Text(_date(snapshot.data[index])),
-                            trailing: Text(_articleID(
-                                snapshot.data[index])), //nur zum Debug
+                            // trailing: Text(_articleID(
+                            // snapshot.data[index])), //nur zum Debug
                             onTap: () {
                               Navigator.push(context,
                                   MaterialPageRoute(builder: (context) {
